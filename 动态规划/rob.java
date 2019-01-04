@@ -49,12 +49,13 @@ public class rob {
     }
 
     public static int f2(int[] nums) {
-        if (nums.length == 0) return 0;
-        if (nums.length == 1) return nums[0];
+        if(nums.length == 0)return 0;
+        if(nums.length == 1)return nums[0];
+        n = new int[nums.length];
         n[0] = nums[0];
-        n[1] = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < nums.length; i++)
-            n[i] = Math.max(solve(i - 1, nums), solve(i - 2, nums) + nums[i]);//自底向上
+        n[1] = Math.max(nums[0],nums[1]);
+        for(int i = 2; i < nums.length;i++)
+            n[i] = Math.max(nums[i] + n[i - 2],n[i - 1]);
         return n[nums.length - 1];
     }
 
