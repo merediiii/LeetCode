@@ -74,7 +74,7 @@ public class minCostClimb {
         for(int i=2;i<len;i++){
             cost[i] = Math.min(cost[i-1]+cost[i],cost[i]+cost[i-2]);//这个计算的是离开第i阶台阶的代价,就是用cost数组来避免新开一个,比如上面f2()中的r[]
         }
-        return Math.min(cost[len-1],cost[len-2]);   //因为到第i阶台阶,有从第i-2阶和第i-1阶过来这两种,
+        return Math.min(cost[len-1],cost[len-2]);   //因为到第i阶台阶,有从第i-2阶和第i-1阶过来这两种走法,
                                                     //故由于cost[i]已经代表的是离开第i阶台阶的代价,
                                                     //所以只需要取cost[i-1]和cost[i-2]之间的小者就可以了,即从第i-2阶离开到第i阶或第i阶离开到第i阶
     }
