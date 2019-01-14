@@ -21,7 +21,7 @@ package 数学;
  */
 public class reverse {
 
-    public int f(int x) {
+    public static int f(int x) {
         int i,r = 0;
         while(x!=0){
             i = x % 10;
@@ -32,5 +32,10 @@ public class reverse {
             r= r * 10 + i;
         }
         return r;
+    }
+
+    public static void main(String[] args){
+        int a = 121;
+        System.out.println(f(a));
     }
 }
