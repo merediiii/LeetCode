@@ -29,7 +29,9 @@ public class NumArray {
     }
 
     public int sumRange(int i, int j) {
-        //其实有两个思路,第一个就是每次都调用迭代,然后将nums[i]加到nums[j]
+        //其实有两个思路,第一个就是每次都调用迭代,然后将nums[i]加到nums[j],但是显然多次相加了,时间开销必然太大
+        //故用数组r[i]存储,取数字的时间开销O(n)为1,故计算r[i]到r[j]的值的和,可由r[j]-r[i-1]表示,
+        //接着考虑i等于0的时候会越界,对i等于0再处理,即r[j]记录的是从r[0]到r[j]的值的和
         return i==0?r[j]:r[j] - r[i-1];
     }
 }
