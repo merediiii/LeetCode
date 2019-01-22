@@ -18,13 +18,6 @@ package 树;
  */
 public class maxDepth {
 
-    public class TreeNode {
-      int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode(int x) { val = x; }
-  }
-
     public int f(TreeNode root) {
         if(root == null) return 0;
         int left = f(root.left);
