@@ -39,7 +39,7 @@ class Solution {
     }
 }
 
- */
+*/
 public class minCostClimb {
     private static int[] r;
 
