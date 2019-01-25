@@ -21,7 +21,10 @@ package 树;
 9   6 3   1
  */
 public class invertTree{
+
+    //从上往下交换 即先交换换再递归
     public TreeNode f(TreeNode root) {
+        if(root == null) return root;
         TreeNode t = root.left;
         root.left = root.right;
         root.right = t;
@@ -30,6 +33,7 @@ public class invertTree{
         return root;
     }
 
+    //从下往上交换 即先递归再交换
     public TreeNode f1(TreeNode root) {
         if(root == null) return root;
         TreeNode left = f1(root.left);
