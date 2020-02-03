@@ -26,9 +26,9 @@ public class divide {
 
     public static Random rnd = new Random();
 
-    public static int f(int dividend, int divisor){
-
-    }
+//    public static int f(int dividend, int divisor){
+//
+//    }
 
     public static void main(String[] args) {
 
