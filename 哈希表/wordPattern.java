@@ -43,17 +43,6 @@ public class wordPattern {
             }
 
         }
-
-        for (Character key : hash.keySet()) {
-            System.out.println("Key = " + key);
-        }
-
-//iterating over values only
-        for (String value : hash.values()) {
-            System.out.println("Value = " + value);
-
-
-        }
         return true;
     }
 
