@@ -60,7 +60,7 @@ public class lengthOfLongestSubstring {
         Arrays.fill(location,-1);
         int len = s.toCharArray().length;
         for (int i = 0; i < len ; i++){
-            if(location[s.charAt(i)] >= 0)
+            if(location[s.charAt(i)] >= 0)                          //讲道理
                 left = Math.max(left,location[s.charAt(i)] + 1);
             res = Math.max(res, i - left + 1);
             location[s.charAt(i)] = i;
