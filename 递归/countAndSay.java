@@ -1,5 +1,6 @@
 package 递归;
 
+import javax.management.StandardEmitterMBean;
 import java.util.Arrays;
 
 /*
@@ -38,16 +39,12 @@ public class countAndSay {
         Arrays.fill(res, "");
         res[0] = "1";
         res[1] = "11";
-
         return g(n, res);
     }
 
     public static String g(int n, String[] res) {
-        if (n == 1) {
-            return res[0];
-        }
-        if (n == 2)
-            return res[0].length() + res[0];
+        if (n == 1) return res[0];
+        if (n == 2) return res[1];
         String s = g(n - 1, res);
         int p = 1;
         for (int i = 1; i < s.length(); i++) {
