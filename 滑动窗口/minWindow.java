@@ -1,4 +1,4 @@
-package 字符串;
+package 滑动窗口;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -33,7 +33,6 @@ public class minWindow {
         int flag = 0;
         while (right < s.length()) {
             for (int i = left; i < right; i++) {
-
                 compare[s.charAt(i)]++;
             }
             for (int i = 0; i < frequency.length; i++) {
@@ -47,10 +46,7 @@ public class minWindow {
                 map.put(s.substring(left, right), right - left + 1);
                 left++;
             }
-
         }
-
-
         return "0";
     }
 
