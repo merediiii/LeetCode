@@ -1,5 +1,7 @@
 package 贪心;
 
+import java.util.Arrays;
+
 /*
 452. 用最少数量的箭引爆气球
 在二维空间中有许多球形的气球。对于每个气球，提供的输入是水平方向上，气球直径的开始和结束坐标。由于它是水平的，所以y坐标并不重要，因此只要知道开始和结束的x坐标就足够了。开始坐标总是小于结束坐标。平面内最多存在104个气球。
@@ -19,6 +21,21 @@ Example:
  */
 public class findMinArrowShots {
     public static int f(int[][] points) {
+        int row = points.length;
+        int col = points[0].length;
+        int count = 0;
+        Arrays.sort(points, (a, b) -> (a[1] - b[1]));
+        int end = points[0][1];
+        for (int i = 1; i < row; i++) {
+            if (end > points[i][0])
+                continue;
+            end = points[i][1];
+            count++;
+        }
+        return count;
+    }
 
+    public static void main(String[] args) {
+        System.out.println(f(new int[][]{new int[]{10, 16}, new int[]{2, 8}, new int[]{1, 6}, new int[]{7, 12}}));
     }
 }
