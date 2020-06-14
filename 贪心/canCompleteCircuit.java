@@ -1,5 +1,8 @@
 package 贪心;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /*
 134. 加油站
 在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。
@@ -46,7 +49,67 @@ cost = [3,4,3]
 因此，无论怎样，你都不可能绕环路行驶一周。
  */
 public class canCompleteCircuit {
-    public int f(int[] gas, int[] cost) {
+    public static int f(int[] gas, int[] cost) {
+        int len = gas.length;
+        int[] start = new int[len];
+        int max = 0;
+        int min = 0x7fffffff;
+        int min_i = 0;
+        int min_cost = 0;
+        ArrayList<Integer> list = new ArrayList<>();
+        for (int i = 0; i < len; i++) {
+            if (gas[i] >= cost[i]) {
+                list.add(i);
+                start[i] = gas[i] - cost[i];
+                if (start[i] >= max) {
+                    max = start[i];
+                    if (gas[i] < min) {
+                        min_i = i;
+                        min = gas[i];
+                        min_cost = cost[i];
+                    }
+                    if (gas[i] == min)
+                        if (cost[i] < min_cost) {
+                            min_i = i;
+                            min = gas[i];
+                            min_cost = cost[i];
+                        }
+                } else if (start[i] == max) {
+                    if (cost[i] < min_cost) {
+                        min_i = i;
+                        min = gas[i];
+                        min_cost = cost[i];
+                    }
+                }
+            }
+        }
+        System.out.println("min: " + min_i);
+        int i = 0;
+        int remain = 0;
+        int success = -1;
+        int j = 0, t = 0;
+        int i_length = 0;
+        for (i = min_i; i_length < len; i++) {
+            t = 0;
+            remain = 0;
+            for (j = i % len; remain >= 0 && (t == 0 || (j % len != i && t > 0)); j++) {
+                if (remain + gas[j % len] >= cost[j % len])
+                    remain += gas[j % len] - cost[j % len];
+                else
+                    break;
+                t++;
+                if (remain >= 0 && (j + 1) % len == i % len)
+                    return i % len;
 
+            }
+            i_length++;
+        }
+        return success;
+    }
+
+    public static void main(String[] args) {
+        int[] p = {6, 1, 4, 3, 5};
+        int[] q = {3, 8, 2, 4, 2};
+        System.out.println(f(p, q));
     }
 }
