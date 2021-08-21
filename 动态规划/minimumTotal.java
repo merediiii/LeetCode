@@ -33,7 +33,7 @@ public class minimumTotal {
         int size = triangle.size();
         int res = max;
         dp = new int[size];
-        Arrays.fill(dp,max);
+        Arrays.fill(dp, max);
         dp[0] = triangle.get(0).get(0);
         for(int i = 1 ; i < size ; i++ ){
             for(int j = i ; j >= 0 ; j--){
