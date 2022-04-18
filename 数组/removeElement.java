@@ -58,6 +58,20 @@ public class removeElement {
         return count;
     }
 
+    public static int g(int[] nums, int val) {
+        int i = 0;
+        int j = 0;
+        while (j < nums.length) {
+            while (j < nums.length && nums[j] == val)
+                j++;
+            if (j == nums.length) return i;
+            nums[i++] = nums[j++];
+        }
+        System.out.println("i\t" + i);
+        return i;
+    }
+
+
     public static void show(int[] a) {
         for (int s : a)
             System.out.print(s + " ");
@@ -65,7 +79,7 @@ public class removeElement {
 
     public static void main(String[] args) {
         System.out.println(ele.length);
-        System.out.println(f(ele, 2));
+        System.out.println(g(ele, 2));
         show(ele);
     }
 }

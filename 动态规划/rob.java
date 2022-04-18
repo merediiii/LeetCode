@@ -49,19 +49,44 @@ public class rob {
     }
 
     public static int f2(int[] nums) {
-        if(nums.length == 0)return 0;
-        if(nums.length == 1)return nums[0];
+        if (nums.length == 0) return 0;
+        if (nums.length == 1) return nums[0];
         n = new int[nums.length];
         n[0] = nums[0];
-        n[1] = Math.max(nums[0],nums[1]);
-        for(int i = 2; i < nums.length;i++)
-            n[i] = Math.max(nums[i] + n[i - 2],n[i - 1]);
+        n[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < nums.length; i++)
+            n[i] = Math.max(nums[i] + n[i - 2], n[i - 1]);
         return n[nums.length - 1];
+    }
+
+    public static int f3(int[] nums) {
+        int[] bank = new int[nums.length + 1];
+        int[] bankT = new int[nums.length + 1];
+        bank[0] = 0;
+        bankT[0] = 0;
+        bank[1] = nums[0];
+        bankT[1] = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (i < nums.length - 1)
+                bank[i + 1] = Math.max(bank[i], bank[i - 1] + nums[i]);
+            bankT[i + 1] = Math.max(bankT[i], bankT[i - 1] + nums[i]);
+        }
+        for (int i = 0; i < bank.length; i++) {
+            System.out.print(bank[i] + " ");
+        }
+        System.out.println();
+        for (int i = 0; i < bank.length; i++) {
+            System.out.print(bankT[i] + " ");
+        }
+        System.out.println();
+        return Math.max(bank[nums.length - 1], bankT[nums.length]);
     }
 
     public static void main(String[] args) {
         int[] test = new int[]{1, 2, 3, 1, 4, 7, 5, 7, 4, 1, 6, 6, 9, 7, 5, 4, 2, 1};
-        System.out.println(f1(test));
-        System.out.println(f2(test));
+        test = new int[]{2, 3, 2};
+//        System.out.println(f1(test));
+//        System.out.println(f2(test));
+        System.out.println(f3(test));
     }
 }

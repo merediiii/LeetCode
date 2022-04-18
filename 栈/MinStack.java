@@ -101,6 +101,6 @@ public class MinStack {
         obj.push(10);
         obj.push(-7);
         System.out.println(obj.getMin());
-
+        System.out.println(Integer.MAX_VALUE);
     }
 }
