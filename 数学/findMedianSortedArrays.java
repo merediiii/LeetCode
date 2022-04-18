@@ -1,5 +1,7 @@
 package 数学;
 
+import com.sun.corba.se.impl.resolver.SplitLocalResolverImpl;
+
 /*
 给定两个大小为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。
 
@@ -53,16 +55,27 @@ public class findMedianSortedArrays {
 
     //O(log(m+n))
     public static double g(int[] nums1, int[] nums2) {
-        int m = nums1.length, n = nums2.length,len = m + n;
+        int m = nums1.length, n = nums2.length, len = m + n;
         int pri = (m + n + 1) / 2;
         int nxt = (m + n + 2) / 2;
-        return (find(nums1,0,nums2,0,pri) + find(nums1,0,nums2,0,nxt)) / 2;
+        int res1 = find(nums1, 0, nums2, 0, pri);
+        System.out.println(res1 + "\n==============");
+        int res2 = find(nums1, 0, nums2, 0, nxt);
+        System.out.println(res2);
+        return (res1 + res2) / 2.0;
     }
 
-    public static int find(int[] nums1,int i ,int[] nums2, int j, int k){
-        if(i > nums1.length)
-            return 0;
-        return 0;
+    public static int find(int[] nums1, int i, int[] nums2, int j, int k) {
+        if (i >= nums1.length) return nums2[j + k - 1];//nums1为空数组
+        if (j >= nums2.length) return nums1[i + k - 1];//nums2为空数组
+        if (k == 1) return Math.min(nums1[i], nums2[j]);
+        int midVal1 = (i + k / 2 - 1 < nums1.length) ? nums1[i + k / 2 - 1] : Integer.MAX_VALUE;
+        System.out.println(i + " + " + k + " / " + 2 + " - " + 1 + ": " + (i + k / 2 - 1) + "\t" + midVal1);
+        int midVal2 = (j + k / 2 - 1 < nums2.length) ? nums2[j + k / 2 - 1] : Integer.MAX_VALUE;
+        System.out.println(j + " + " + k + " / " + 2 + " - " + 1 + ": " + (j + k / 2 - 1) + "\t" + midVal2);
+        System.out.println((i + k / 2) + " " + (j + k / 2) + " " + (k - k / 2));
+        if (midVal1 < midVal2) return find(nums1, i + k / 2, nums2, j, k - k / 2);
+        else return find(nums1, i, nums2, j + k / 2, k - k / 2);
     }
 
     public static void main(String[] args) {

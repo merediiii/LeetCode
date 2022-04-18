@@ -3,31 +3,37 @@ package 字符串;
 import java.util.HashMap;
 
 public class longestPalindrome {
-    public static int f(String s) {
-        int[] dic = new int[128];
-        char[] a = s.toCharArray();
-        for (int i = 0; i < a.length; i++) {
-            dic[a[i]]++;
-        }
-        int max_odd = 0, sum = 0 , odd = 0;
-        for (int i = 0; i < 128; i++)
-            if ((dic[i] & 1) == 1) {
-                max_odd = Math.max(max_odd, dic[i]);
-                odd++;
+
+    public static String f(String s) {
+        int len = s.length();
+        if (len == 0 || len == 1)
+            return s;
+        boolean[][] dp = new boolean[len][len];
+        char[] dic = s.toCharArray();
+        int max = 1, left = 0;
+        for (int i = 0; i < len; i++)
+            for (int j = 0; j < len; j++)
+                dp[i][j] = i == j ? true : false;
+        for (int i = 1; i < len; i++) {
+            for (int j = 0; j < i; j++) {
+                if (dic[j] == dic[i])
+                    if (i - j < 3)
+                        dp[j][i] = true;
+                    else
+                        dp[j][i] = dp[j + 1][i - 1];
+
+                if (dp[j][i] == true) {
+                    if (i - j + 1 > max) left = j;
+                    max = i - j + 1 > max ? i - j + 1 : max;
+
+                }
             }
-        for (int i = 0; i < 128; i++) {
-            if ((dic[i] & 1) == 1)
-                sum += dic[i] - 1;
-            else
-                sum += dic[i];
         }
-
-        return sum + odd > 0?1:0;
-
+        return s.substring(left, max + left);
     }
 
     public static void main(String[] args) {
-        System.out.println((int)'Z');
-        System.out.println(f("dd"));
+        System.out.println(f("cbbd"));
     }
+
 }

@@ -1,5 +1,7 @@
 package 字符串;
 
+import sun.awt.windows.WPrinterJob;
+
 /*
 
 680. 验证回文字符串 Ⅱ
@@ -23,23 +25,30 @@ package 字符串;
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class validPalindrome {
-    public boolean f(String s) {
-        for (int i = 0; i < s.length(); i++) {
-            StringBuilder sb = new StringBuilder(s);
-            sb.deleteCharAt(i);
-            if (g(sb.toString()))
-                return true;
-        }
-        return false;
-    }
-
-    public boolean g(String s) {
+    public static boolean f(String s) {
+        int len = s.length(), left = 0, right = s.length() - 1;
         char[] chars = s.toCharArray();
-        for (int i = 0; i < s.length() / 2; i++) {
-            if (chars[i] != chars[s.length() - 1 - i])
-                return false;
+        while (left < right) {
+            if (chars[left] != chars[right])
+                return g(s, left + 1, right) || g(s, left, right - 1);
+            left++;
+            right--;
         }
         return true;
     }
 
+    public static boolean g(String s, int i, int j) {
+        while (i < j) {
+            if (s.charAt(i) != s.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(f("abcsa"));
+    }
 }
