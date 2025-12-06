@@ -28,6 +28,7 @@ public class minimumSum_2908 {
     }
 
     private int binarySum(int[] nums) {
+        return 0;
     }
 
     public static void main(String[] args) {
